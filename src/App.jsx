@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Box, Toolbar } from '@mui/material';
 import Topbar from './components/topbar';
 import Sidebar from './components/sidebar';
+import AppRoutes from './routes/route';
 
 const drawerWidth = 240;
 
@@ -36,6 +37,7 @@ function App() {
 
       <Box component="main" sx={{ flexGrow: 1, p: 3, width: { sm: showSidebar ? `calc(100% - ${drawerWidth}px)` : '100%' } }}>
         <Toolbar />
+        <AppRoutes />
         <h2>メインコンテンツ</h2>
       </Box>
     </Box>
