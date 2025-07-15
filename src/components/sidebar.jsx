@@ -15,8 +15,15 @@ import {
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import CloseIcon from '@mui/icons-material/Close';
+import { Link } from 'react-router-dom';  // ← 追加
 
 const Sidebar = ({ open, onClose, drawerWidth, onClosePermanent }) => {
+  const menuItems = [
+    { text: 'テーブル作成', icon: <InboxIcon />, path: '/' },
+    { text: 'INSERT作成', icon: <MailIcon />, path: '/insert' },
+    { text: '履歴', icon: <MailIcon />, path: '/history' },
+  ];
+
   const drawerContent = (showClose) => (
     <div>
       <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', px: 2 }}>
@@ -29,13 +36,15 @@ const Sidebar = ({ open, onClose, drawerWidth, onClosePermanent }) => {
       </Toolbar>
       <Divider />
       <List>
-        {['テーブル作成', 'INSERT作成', '履歴'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
+        {menuItems.map((item) => (
+          <ListItem key={item.text} disablePadding>
+            <ListItemButton
+              component={Link}
+              to={item.path}
+              onClick={onClose} // モバイル時にメニュー選択後Drawerを閉じる
+            >
+              <ListItemIcon>{item.icon}</ListItemIcon>
+              <ListItemText primary={item.text} />
             </ListItemButton>
           </ListItem>
         ))}
