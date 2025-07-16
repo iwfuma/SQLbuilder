@@ -1,5 +1,3 @@
-// app/logic/CreateTable.jsx
-
 export function generateCreateTableSQL({ tableName, tableComment, rows }) {
   if (!tableName.trim()) {
     return { error: 'テーブル名を入力してください。' };

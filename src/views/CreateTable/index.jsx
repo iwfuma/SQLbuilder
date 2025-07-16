@@ -245,21 +245,21 @@ const CreateTable = () => {
         </Button>
       </Box>
 
-      {createSQL && (
+        {createSQL && (
         <Box sx={{ mt: 3 }}>
-          <Typography variant="h6">生成されたSQL</Typography>
-          <Paper variant="outlined" sx={{ p: 2, whiteSpace: 'pre-wrap', fontFamily: 'monospace' }}>
+            <Typography variant="h6">生成されたSQL</Typography>
+            <Paper variant="outlined" sx={{ p: 2, whiteSpace: 'pre-wrap', fontFamily: 'monospace' }}>
             {createSQL}
-          </Paper>
-          <Box sx={{ mt: 2 }}>
+            </Paper>
+            <Box sx={{ mt: 2 }}>
             <CopyButton textToCopy={createSQL} disabled={!createSQL} />
             
-          </Box>
+            </Box>
         </Box>
-      )}
+        )}
     </Box>
     
-  );
+    );
 };
 
 export default CreateTable;
