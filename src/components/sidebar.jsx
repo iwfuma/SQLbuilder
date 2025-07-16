@@ -12,16 +12,15 @@ import {
   Box,
   Typography
 } from '@mui/material';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+
 import CloseIcon from '@mui/icons-material/Close';
 import { Link } from 'react-router-dom';  
 
 const Sidebar = ({ open, onClose, drawerWidth, onClosePermanent }) => {
   const menuItems = [
-    { text: 'テーブル作成', icon: <InboxIcon />, path: '/' },
-    { text: 'INSERT作成', icon: <MailIcon />, path: '/insert' },
-    { text: '履歴', icon: <MailIcon />, path: '/history' },
+    { text: 'テーブル作成', path: '/' },
+    { text: 'INSERT作成', path: '/insert' },
+    { text: '履歴', path: '/history' },
   ];
 
   const drawerContent = (showClose) => (

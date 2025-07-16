@@ -1,5 +1,3 @@
-// app/views/CreateTable/index.jsx
-
 import React, { useState } from 'react';
 import {
   Box, Button, Typography, TextField, Table, TableBody,
@@ -10,7 +8,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import { generateCreateTableSQL } from '../../logic/CreateTable';
 import CopyButton from '../../components/Button/button';
-
 
 const DATA_TYPES = ['INT', 'VARCHAR', 'TEXT', 'DATE', 'DATETIME', 'BOOLEAN', 'FLOAT'];
 
@@ -256,6 +253,7 @@ const CreateTable = () => {
           </Paper>
           <Box sx={{ mt: 2 }}>
             <CopyButton textToCopy={createSQL} disabled={!createSQL} />
+            
           </Box>
         </Box>
       )}
