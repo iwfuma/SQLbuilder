@@ -8,7 +8,7 @@ const drawerWidth = 240;
 
 function App() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [showSidebar, setShowSidebar] = useState(true); // ← PC用Drawer表示切替
+  const [showSidebar, setShowSidebar] = useState(false); // ← PC用Drawer表示切替
 
   const handleToggleMobileDrawer = () => {
     setMobileOpen(!mobileOpen);
