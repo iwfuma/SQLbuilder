@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/SQLbuilder/static/css/main.e6c13ad2.css",
+    "main.js": "/SQLbuilder/static/js/main.84afce4c.js",
+    "static/js/453.2c90c2bc.chunk.js": "/SQLbuilder/static/js/453.2c90c2bc.chunk.js",
+    "index.html": "/SQLbuilder/index.html",
+    "main.e6c13ad2.css.map": "/SQLbuilder/static/css/main.e6c13ad2.css.map",
+    "main.84afce4c.js.map": "/SQLbuilder/static/js/main.84afce4c.js.map",
+    "453.2c90c2bc.chunk.js.map": "/SQLbuilder/static/js/453.2c90c2bc.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.84afce4c.js"
+  ]
+}
