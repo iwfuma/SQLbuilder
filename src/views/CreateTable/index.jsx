@@ -75,6 +75,16 @@ const CreateTable = () => {
     } else {
         setCreateSQL(result.sql);
     }
+
+    const history = JSON.parse(localStorage.getItem('sqlHistory')) || [];
+    const newEntry = {
+      id: Date.now(),
+      tableName,
+      createdAt: new Date().toLocaleString(),
+      sql: result.sql,
+    };
+    const updatedHistory = [newEntry, ...history].slice(0, 50); // 最大50件保持
+    localStorage.setItem('sqlHistory', JSON.stringify(updatedHistory));
   };
 
   return (
