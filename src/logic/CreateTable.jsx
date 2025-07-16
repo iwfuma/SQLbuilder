@@ -27,6 +27,14 @@ export function generateCreateTableSQL({ tableName, tableComment, rows }) {
     columnDefs.push(`  PRIMARY KEY (${primaryKeys.join(', ')})`);
   }
 
+  const foreignKeys = rows
+  .filter(r => r.fk && r.refTable && r.refColumn)
+  .map(r =>
+    `  FOREIGN KEY (${r.name}) REFERENCES ${r.refTable}(${r.refColumn})`
+  );
+  columnDefs.push(...foreignKeys);
+
+
   const uniqueKeys = rows.filter(r => r.unique && !r.pk).map(r => r.name);
     uniqueKeys.forEach(name => {
     columnDefs.push(`  UNIQUE KEY (${name})`);

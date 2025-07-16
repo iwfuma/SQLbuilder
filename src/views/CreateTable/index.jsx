@@ -43,10 +43,37 @@ const CreateTable = () => {
   const generateSQL = () => {
     const result = generateCreateTableSQL({ tableName, tableComment, rows });
 
+    const fkErrorRow = rows.find(row =>
+        row.fk && (!row.refTable || !row.refColumn)
+    );
+
+    // カラム名の重複チェック
+    const columnNames = rows.map(row => row.name.trim()).filter(name => name !== '');
+    const nameSet = new Set();
+    for (const name of columnNames) {
+        if (nameSet.has(name)) {
+        alert(`カラム名「${name}」が重複しています。`);
+        return;
+        }
+        nameSet.add(name);
+    }
+
+    // PKが最低1つあるかチェック
+    const hasPK = rows.some(row => row.pk);
+    if (!hasPK) {
+        alert('主キー（PK）が1つも設定されていません。');
+        return;
+    }
+    
+    // 外部キーの参照テーブルとカラムが空の場合のエラーチェック
+    if (fkErrorRow) {
+        alert(`外部キーが指定されていますが、参照テーブルまたは参照カラムが空です。行：${fkErrorRow.id}`);
+        return;
+    }     
     if (result.error) {
-      alert(result.error);
+        alert(result.error);
     } else {
-      setCreateSQL(result.sql);
+        setCreateSQL(result.sql);
     }
   };
 
@@ -75,7 +102,7 @@ const CreateTable = () => {
         />
       </Box>
 
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} sx={{ overflowX: 'auto' }}>
         <Table size="small">
           <TableHead>
             <TableRow>
@@ -85,6 +112,8 @@ const CreateTable = () => {
               <TableCell>NOT NULL</TableCell>
               <TableCell>PK</TableCell>
               <TableCell>FK</TableCell>
+              <TableCell>参照テーブル</TableCell> 
+              <TableCell>参照カラム</TableCell>
               <TableCell>Unique</TableCell>
               <TableCell>Index</TableCell>
               <TableCell>削除</TableCell>
@@ -143,12 +172,39 @@ const CreateTable = () => {
                         checked={row.fk}
                         onChange={(e) => handleChange(row.id, 'fk', e.target.checked)}
                     />
-                </TableCell>
+                    </TableCell>
+
+                    {row.fk ? (
+                    <>
+                        <TableCell>
+                        <TextField
+                            variant="standard"
+                            value={row.refTable || ''}
+                            onChange={(e) => handleChange(row.id, 'refTable', e.target.value)}
+                            placeholder="参照テーブル"
+                        />
+                        </TableCell>
+                        <TableCell>
+                        <TextField
+                            variant="standard"
+                            value={row.refColumn || ''}
+                            onChange={(e) => handleChange(row.id, 'refColumn', e.target.value)}
+                            placeholder="参照カラム"
+                        />
+                        </TableCell>
+                    </>
+                    ) : (
+                    <>
+                        <TableCell />
+                        <TableCell />
+                    </>
+                    )}
+
                 <TableCell align="center">
                     <Checkbox
                         checked={row.unique}
                         onChange={(e) => handleChange(row.id, 'unique', e.target.checked)}
-                        disabled={row.pk} // PKは自動でユニークだから無効化してもいいです
+                        disabled={row.pk} 
                     />
                 </TableCell>
                 <TableCell align="center">

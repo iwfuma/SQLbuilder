@@ -15,7 +15,7 @@ import {
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import CloseIcon from '@mui/icons-material/Close';
-import { Link } from 'react-router-dom';  // ← 追加
+import { Link } from 'react-router-dom';  
 
 const Sidebar = ({ open, onClose, drawerWidth, onClosePermanent }) => {
   const menuItems = [
