@@ -8,7 +8,7 @@ import History from '../views/History';
 
 const AppRoutes = () => {
   return (
-    <Routes>s
+    <Routes>
       <Route path="/" element={<CreateTable />} />
       <Route path="/insert" element={<InsertTable />} />
       <Route path="/history" element={<History />} />
